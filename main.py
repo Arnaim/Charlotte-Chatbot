@@ -72,5 +72,7 @@ def chat(req: ChatRequest):  # Removed 'async' to prevent UI freezing
 
 if __name__ == "__main__":
     import uvicorn
-    # Using 8080 as you did in your previous command
-    uvicorn.run(app, host="127.0.0.1", port=8080)
+    # Use the port assigned by the host, or default to 8080 locally
+    port = int(os.environ.get("PORT", 8080))
+    # '0.0.0.0' allows the server to be accessible externally
+    uvicorn.run(app, host="0.0.0.0", port=port)
